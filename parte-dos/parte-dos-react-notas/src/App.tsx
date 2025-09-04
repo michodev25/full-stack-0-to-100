@@ -12,6 +12,7 @@ function App() {
   const handleChange = (event:any) => {
     setNewNote(event.target.value)
   }
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = (event:any) => {
      event.preventDefault();
   }
