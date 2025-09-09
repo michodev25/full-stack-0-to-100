@@ -21,6 +21,21 @@ function App() {
       });
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const noteToAdd = {
+      id: notes.length + 1,
+      title: newNote,
+      body: "This is a new note",
+    };
+    setNotes([...notes, noteToAdd]);
+    setNewNote("");
+  };
+  
+  const handleChange = (e) => {
+    setNewNote(e.target.value);
+  };  
+
   return (
     <div> <h1>Notes</h1>
       {loading ? "Cargando..." : ""}
@@ -31,8 +46,9 @@ function App() {
         )}
       </ol>
 
-      <form>
-        
+      <form onSubmit={handleSubmit}>
+        <input type="text"  onChange={ handleChange} />
+        <button type="submit">Add Note</button>    
       </form>
 
     </div>
