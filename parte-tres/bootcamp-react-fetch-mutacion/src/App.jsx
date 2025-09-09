@@ -11,12 +11,15 @@ function App() {
   const [newNote, setNewNote] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect((
+  useEffect(() => {
+    setLoading(true);
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
-      .then((json) => {setNotes(json)})
-  ), []);
+      .then((json) => {
+        setNotes(json);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div> <h1>Notes</h1>
