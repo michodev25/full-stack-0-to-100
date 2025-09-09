@@ -9,16 +9,17 @@ function App() {
 
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.json())
-      .then((json) => {
-        setNotes(json);
-        setLoading(false);
-      });
+    setTimeout(() => {
+
+      fetch("https://jsonplaceholder.typicode.com/posts")
+        .then((response) => response.json())
+        .then((json) => {
+          setNotes((json));
+          console.log(json)
+        });
+    }, 2000)
   }, []);
 
   const handleSubmit = (e) => {
@@ -31,24 +32,24 @@ function App() {
     setNotes([...notes, noteToAdd]);
     setNewNote("");
   };
-  
+
   const handleChange = (e) => {
     setNewNote(e.target.value);
-  };  
+  };
+
 
   return (
     <div> <h1>Notes</h1>
-      {loading ? "Cargando..." : ""}
+
       <ol>
-        {notes.map(note => {
+        {notes.map((note) => (
           <Note key={note.id} {...note} />
-        }
-        )}
+        ))}
       </ol>
 
       <form onSubmit={handleSubmit}>
-        <input type="text"  onChange={ handleChange} />
-        <button type="submit">Add Note</button>    
+        <input type="text" onChange={handleChange} />
+        <button type="submit">Add Note</button>
       </form>
 
     </div>
