@@ -1,5 +1,4 @@
-const notesService = require('../services/notes.services');
-
+import notesService from '../services/notes.services.js'
 // Obtener todas las notas
 exports.getAllNotes = async (req, res) => {
     try {

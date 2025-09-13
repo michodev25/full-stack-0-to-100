@@ -1,12 +1,15 @@
 import express from 'express';
-const app = express();  
+import 'dotenv/config';
+import notesRouter from './routes/notes.routes.js';
+const app = express();
 
-app.get('/', (req, res) => {(
+app.use(express.json());
+app.use('/api/notes', notesRouter);
+app.use('/', (req, res) => {
+    res.send('Welcome to the Notes API');
+} )
 
-    res.send("Reviviendo desde Express")
-
-)})
-
-app.listen(3000 || process.env.PORT, () => {
-    console.log("Server is running on port"+`${process.env.PORT}`)
-})
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});

@@ -28,10 +28,10 @@ function deleteNote(id) {
     return true;
 }
 
-module.exports = {
-    createNote,
+export default {
     getAllNotes,
     getNoteById,
+    createNote,
     updateNote,
     deleteNote
-};
+}
