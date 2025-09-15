@@ -1,13 +1,33 @@
-import 'dotenv/config';
-import pkg from 'pg';
-const { Pool } = pkg;
+import mongoose from 'mongoose';
 
-const pool = new Pool({
-  host: process.env.PGHOST,
-  user: process.env.PGUSER,
-  password: process.env.PGPASSWORD,
-  database: process.env.PGDATABASE,
-  port: process.env.PGPORT ? parseInt(process.env.PGPORT) : 5432,
+import Note from '../data/noteModel.js';
+
+
+
+
+const conectarDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_IRL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('✅ Conectado a MongoDB');
+  } catch (error) {
+    console.error('❌ Error al conectar a MongoDB:', error.message);
+    process.exit(1); // Detiene el servidor si no hay conexión
+  }
+};
+export default conectarDB;
+
+const note1 = new Note({
+  title: "Nota de prueba",
+  content: "Contenido de la nota de prueba",
+  data: new Date(),
+  important: true
 });
-
-module.exports = pool;
+note1.save().then((result) => {
+  console.log("Nota guardada:", result);
+  mongoose.connection.close();
+} ).catch((error) => {
+  console.error("Error al guardar la nota:", error);
+});
