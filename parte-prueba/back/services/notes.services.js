@@ -1,9 +1,9 @@
-import {Note} from '../model/database.js';
+import { Note } from '../model/database.js';
 
 // Crear
-async function createNote({ title, content, important }) {
+async function createNote({ title,body }) {
   try {
-    const note = new Note({ title, content, important, date: new Date() });
+    const note = new Note({ title, body });
     return await note.save();
   } catch (error) {
     console.error("❌ Error al crear nota:", error.message);
@@ -13,26 +13,34 @@ async function createNote({ title, content, important }) {
 
 // Obtener todas
 async function getAllNotes() {
-  const pagina = parseInt(req.query.pagina) || 1;
-  const limite = parseInt(req.query.limite) || 10;
-  const skip = (pagina - 1) * limite;
-
-    const notas = await Nota.find().skip(skip).limit(limite);
+ 
+    const notas = await Note.find();
     return notas;
-}
+  } /*
+  const totalNotas = await Note.countDocuments();
+  const notas = await Nota.find().skip(skip).limit(limite);
+  console.log('Total de notas:', totalNotas);
+  return {
+    totalNotas,
+    totalPaginas: Math.ceil(totalNotas / limite),
+    paginaActual: pagina,
+    notas
+  }
+  }
+}*/
 
 // Obtener por id
 async function getNoteById(id) {
- return await Note.findById(id);
+  return await Note.findById(id);
 }
 
 // Actualizar
 async function updateNote(id, { title, content, important }) {
- return await Note.findByIdAndUpdate(
-      id,
-      { $set: { title, content, important } },
-      { new: true } // devuelve la nota actualizada
- )
+  return await Note.findByIdAndUpdate(
+    id,
+    { $set: { title, content, important } },
+    { new: true } // devuelve la nota actualizada
+  )
 }
 
 // Eliminar

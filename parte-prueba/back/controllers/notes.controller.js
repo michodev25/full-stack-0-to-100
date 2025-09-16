@@ -1,6 +1,9 @@
 import notesService from '../services/notes.services.js'
 // Obtener todas las notas
 export const getAllNotes = async (req, res) => {
+    const pagina = parseInt(req.query.pagina) || 1; // Página actual
+    const limite = 10; // Cantidad de notas por página
+    const skip = (pagina - 1) * limite;
     try {
         const notes = await notesService.getAllNotes();
         res.json(notes);
