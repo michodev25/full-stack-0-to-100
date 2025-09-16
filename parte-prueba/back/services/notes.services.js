@@ -28,10 +28,10 @@ async function getNoteById(id) {
 }
 
 // Actualizar
-async function updateNote(id, { title, content, important }) {
+async function updateNote(id, { title, body }) {
   return await Note.findByIdAndUpdate(
     id,
-    { $set: { title, content, important } },
+    { $set: { title, body } },
     { new: true } // devuelve la nota actualizada
   )
 }
