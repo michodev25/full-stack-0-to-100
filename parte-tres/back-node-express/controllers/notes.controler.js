@@ -1,6 +1,6 @@
 import notesService from '../services/notes.services.js'
 // Obtener todas las notas
-exports.getAllNotes = async (req, res) => {
+export const getAllNotes = async (req, res) => {
     try {
         const notes = await notesService.getAllNotes();
         res.json(notes);
@@ -10,7 +10,7 @@ exports.getAllNotes = async (req, res) => {
 };
 
 // Obtener una nota por ID
-exports.getNoteById = async (req, res) => {
+export const getNoteById = async (req, res) => {
     try {
         const note = await notesService.getNoteById(req.params.id);
         if (!note) return res.status(404).json({ error: 'Nota no encontrada' });
@@ -21,7 +21,7 @@ exports.getNoteById = async (req, res) => {
 };
 
 // Crear una nueva nota
-exports.createNote = async (req, res) => {
+export const createNote = async (req, res) => {
     try {
         const newNote = await notesService.createNote(req.body);
         res.status(201).json(newNote);
@@ -31,7 +31,7 @@ exports.createNote = async (req, res) => {
 };
 
 // Actualizar una nota
-exports.updateNote = async (req, res) => {
+export const updateNote = async (req, res) => {
     try {
         const updatedNote = await notesService.updateNote(req.params.id, req.body);
         if (!updatedNote) return res.status(404).json({ error: 'Nota no encontrada' });
@@ -42,7 +42,7 @@ exports.updateNote = async (req, res) => {
 };
 
 // Eliminar una nota
-exports.deleteNote = async (req, res) => {
+export const deleteNote = async (req, res) => {
     try {
         const deleted = await notesService.deleteNote(req.params.id);
         if (!deleted) return res.status(404).json({ error: 'Nota no encontrada' });

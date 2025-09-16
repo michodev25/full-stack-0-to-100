@@ -1,7 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
 import notesRouter from './routes/notes.routes.js';
-import conectarDB from './services/database.js';
+import conectarDB from './model/database.js';
 
 const app = express();  
 app.use(express.json());

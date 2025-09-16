@@ -1,4 +1,4 @@
-import Note from './Note.js';
+import Note from "../data/noteModel.js"
 
 // Crear
 async function createNote({ title, content, important }) {
