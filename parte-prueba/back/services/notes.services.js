@@ -13,7 +13,12 @@ async function createNote({ title, content, important }) {
 
 // Obtener todas
 async function getAllNotes() {
-  return await Note.find();
+  const pagina = parseInt(req.query.pagina) || 1;
+  const limite = parseInt(req.query.limite) || 10;
+  const skip = (pagina - 1) * limite;
+
+    const notas = await Nota.find().skip(skip).limit(limite);
+    return notas;
 }
 
 // Obtener por id

@@ -17,9 +17,7 @@ const conectarDB = async () => {
 export default conectarDB;
 export const noteSchema = mongoose.Schema({
     title: String,
-    content: String,
-    date: Date,
-    important: Boolean
+   body: String,
 })
 
 export const Note = mongoose.model('Note', noteSchema);

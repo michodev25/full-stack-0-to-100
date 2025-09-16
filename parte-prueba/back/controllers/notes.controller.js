@@ -12,6 +12,7 @@ export const getAllNotes = async (req, res) => {
 // Obtener una nota por ID
 export const getNoteById = async (req, res) => {
     try {
+        console.log(req.params.id);
         const note = await notesService.getNoteById(req.params.id);
         if (!note) return res.status(404).json({ error: 'Nota no encontrada' });
         res.json(note);

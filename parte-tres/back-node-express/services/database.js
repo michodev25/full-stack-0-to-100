@@ -7,10 +7,7 @@ import Note from '../data/noteModel.js';
 
 const conectarDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_IRL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGODB_IRL);
     console.log('✅ Conectado a MongoDB');
   } catch (error) {
     console.error('❌ Error al conectar a MongoDB:', error.message);
@@ -18,16 +15,3 @@ const conectarDB = async () => {
   }
 };
 export default conectarDB;
-
-const note1 = new Note({
-  title: "Nota de prueba",
-  content: "Contenido de la nota de prueba",
-  data: new Date(),
-  important: true
-});
-note1.save().then((result) => {
-  console.log("Nota guardada:", result);
-  mongoose.connection.close();
-} ).catch((error) => {
-  console.error("Error al guardar la nota:", error);
-});
