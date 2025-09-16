@@ -1,12 +1,14 @@
+import { Note } from '../model/database.js';
 import notesService from '../services/notes.services.js'
 // Obtener todas las notas
 export const getAllNotes = async (req, res) => {
     const pagina = parseInt(req.query.pagina) || 1; // Página actual
-    const limite = 10; // Cantidad de notas por página
-    const skip = (pagina - 1) * limite;
+     const limite = 10; // Cantidad de notas por página
+  const skip = (pagina - 1) * limite;
+  const totalNotas = await Note.countDocuments();
     try {
-        const notes = await notesService.getAllNotes();
-        res.json(notes);
+        const notas = await notesService.getAllNotes(pagina,limite,skip);
+         res.json(notas);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener las notas' });
     }

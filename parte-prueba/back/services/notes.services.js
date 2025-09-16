@@ -12,22 +12,15 @@ async function createNote({ title,body }) {
 }
 
 // Obtener todas
-async function getAllNotes() {
- 
+async function getAllNotes(skip,limite) {
+ /*
     const notas = await Note.find();
     return notas;
-  } /*
-  const totalNotas = await Note.countDocuments();
-  const notas = await Nota.find().skip(skip).limit(limite);
-  console.log('Total de notas:', totalNotas);
-  return {
-    totalNotas,
-    totalPaginas: Math.ceil(totalNotas / limite),
-    paginaActual: pagina,
-    notas
+  }*/ 
+  const notas = await Note.find().skip(skip).limit(limite);
+   return notas;
   }
-  }
-}*/
+
 
 // Obtener por id
 async function getNoteById(id) {
