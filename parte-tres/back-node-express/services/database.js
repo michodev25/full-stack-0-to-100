@@ -3,8 +3,6 @@ import mongoose from 'mongoose';
 import Note from '../data/noteModel.js';
 
 
-
-
 const conectarDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_IRL);
