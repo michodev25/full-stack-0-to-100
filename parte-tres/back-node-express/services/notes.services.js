@@ -1,10 +1,20 @@
 import Note from "../data/noteModel.js"
+import User from "../data/userModel.js";
 
 // Crear
-async function createNote({ title, content, important }) {
+async function createNote({ title, content, important, userid}) {
   try {
-    const note = new Note({ title, content, important, date: new Date() });
-    return await note.save();
+    const user = User.findById(userid)
+    const note = new Note({ title, content, important, date: new Date(), user: user._id });
+    
+   try {
+     const noteSaved = await note.save();
+     user.notes = user.notes.concat(noteSaved._id);
+    await user.save()
+    return noteSaved;
+   } catch (error) {
+     console.error("❌ Error al crear nota en el usuario:", error.message);
+   }
   } catch (error) {
     console.error("❌ Error al crear nota:", error.message);
     throw error;

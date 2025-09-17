@@ -3,8 +3,7 @@ import notesService from '../services/notes.services.js'
 export const getAllNotes = async (req, res) => {
     try {
         const notes = await notesService.getAllNotes();
-        console.log(notes.text)
-        res.json({notes});
+        res.json(notes);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener las notas' });
     }
@@ -15,7 +14,7 @@ export const getNoteById = async (req, res) => {
     try {
         const note = await notesService.getNoteById(req.params.id);
         if (!note) return res.status(404).json({ error: 'Nota no encontrada' });
-        res.json({note});
+        res.json(note);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener la nota' });
     }
