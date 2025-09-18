@@ -9,17 +9,21 @@ const app = express();
 app.use(express.json());
 app.use('/api/', notesRouter);
 app.use('/api/users', userRoutes);
-app.use('/auth/', authRouter);
-app.use('/', (req, res) => {
-    res.send('Welcome to the Notes API');
-} )
-
-
+app.use('/api/auth', authRouter);
 conectarDB();
+app.all('/api/auth', (req, res, next) => {
+  if (req.method !== 'POST') {
+    return res.status(404).json({ error: 'Método no permitido' });
+  }
+  next();
+});
+
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}  🚀`);
+  console.log(`Server running on https://localhost:${PORT}  🚀`);
 });
 
 export default app;

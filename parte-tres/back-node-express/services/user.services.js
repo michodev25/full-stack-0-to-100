@@ -5,8 +5,12 @@ import bcrypt from 'bcryptjs';
 // Crear
 async function createUser({  username, password}) {
   const hash = await bcrypt.hash(password, 10)
-   const user = new User({  username, password: hash });
-    return await user.save();
+  const userExists = await User.findOne({ username });
+    if (userExists) {
+      throw new Error('El usuario ya existe');
+    }
+  const user = new User({  username, password: hash });
+   return await user.save();
 }
 
 // Obtener todas
@@ -24,10 +28,10 @@ async function getUserById(id) {
 }
 
 // Actualizar
-async function updateUser(id, {  username, passwordHash, notes }) {
+async function updateUser(id, {  username, password, notes }) {
  return await User.findByIdAndUpdate(
       id,
-      { $set: { username, passwordHash, notes} },
+      { $set: { username, password, notes} },
       { new: true } // devuelve la nota actualizada
  )
 }

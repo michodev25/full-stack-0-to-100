@@ -42,8 +42,8 @@ export async function getUserById(req, res) {
 export async function updateUser(req, res) {
   try {
     const { id } = req.params;
-    const { username, passwordHash, notes } = req.body;
-    const updatedUser = await userService.updateUser(id, { username, passwordHash, notes });
+    const { username, password, notes } = req.body;
+    const updatedUser = await userService.updateUser(id, { username, password, notes });
     if (!updatedUser) return res.status(404).json({ error: 'Usuario no encontrado' });
     res.status(200).json(updatedUser);
   } catch (error) {

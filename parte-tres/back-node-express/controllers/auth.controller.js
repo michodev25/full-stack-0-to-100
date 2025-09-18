@@ -1,8 +1,10 @@
 import authService from '../services/auth.services.js';
 export const loginUser = async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { username,  password} = req.body;
+          console.log(username,  password);
         const user = await authService.login(username, password);
+      
         if (!user) {
             return res.status(401).json({ error: 'Credenciales inválidas' });
         }
