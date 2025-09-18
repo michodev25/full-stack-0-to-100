@@ -11,7 +11,11 @@ async function createUser({  username, password}) {
 
 // Obtener todas
 async function getAllUsers() {
-  return await User.find();
+  return await User.find({}).populate('notes', {
+    content: 1,
+    date: 1,
+    _id: 0
+  });
 }
 
 // Obtener por id
