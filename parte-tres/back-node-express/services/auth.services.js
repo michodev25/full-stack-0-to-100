@@ -1,18 +1,25 @@
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import User from '../data/userModel.js';
 
 
 async function login(username, password) {
     const user = await User.findOne({ username }).select(password);
-     console.log(user.password)
+   
     const isPasswordValid = user === null 
       ? false 
       : await bcrypt.compare(password, user.password);
-      console.log(isPasswordValid)
-    if (!isPasswordValid) {
+ 
+    if (!(isPasswordValid)) {
         throw new Error('Contraseña o Usuario incorrecto');
     }
-    return user;
+    const userForToken = {
+        id: user._id,
+        username: user.username
+    };
+    const token = jwt.sign(userForToken, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    return {user, token};
 }
 
 async function register(username, password) {

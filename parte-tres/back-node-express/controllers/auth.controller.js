@@ -3,12 +3,12 @@ export const loginUser = async (req, res) => {
     try {
         const { username,  password} = req.body;
           console.log(username,  password);
-        const user = await authService.login(username, password);
+        const {user, token} = await authService.login(username, password);
       
-        if (!user) {
+         if (!user) {
             return res.status(401).json({ error: 'Credenciales inválidas' });
-        }
-        res.json({ message: 'Login exitoso', user });
+          }
+        res.json({ message: 'Login exitoso', user , token });
     } catch (error) {
         res.status(500).json({ error: 'Error al iniciar sesión' });
     }   

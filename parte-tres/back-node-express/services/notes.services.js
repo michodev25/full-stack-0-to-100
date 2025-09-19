@@ -2,19 +2,20 @@ import Note from "../data/noteModel.js"
 import User from "../data/userModel.js";
 
 // Crear
-async function createNote({ title, content, important, userid}) {
+async function createNote( title, content, important, userid) {
   try {
-    const user = User.findById(userid)
+    const user = User.findById(userid);
     const note = new Note({ title, content, important, date: new Date(), user: user._id });
-    
-   try {
-     const noteSaved = await note.save();
-     user.notes = user.notes.concat(noteSaved._id);
-    await user.save()
-    return noteSaved;
-   } catch (error) {
-     console.error("❌ Error al crear nota en el usuario:", error.message);
-   }
+    console.log(user.username)
+    try {
+      const noteSaved = await note.save();
+      console.log(noteSaved + user)
+      user.notes = user.notes.concat(noteSaved);
+      await user.save()
+      return noteSaved;
+    } catch (error) {
+      console.error("❌ Error al crear nota en el usuario:", error.message);
+    }
   } catch (error) {
     console.error("❌ Error al crear nota:", error.message);
     throw error;
@@ -28,16 +29,16 @@ async function getAllNotes() {
 
 // Obtener por id
 async function getNoteById(id) {
- return await Note.findById(id);
+  return await Note.findById(id);
 }
 
 // Actualizar
 async function updateNote(id, { title, content, important }) {
- return await Note.findByIdAndUpdate(
-      id,
-      { $set: { title, content, important } },
-      { new: true } // devuelve la nota actualizada
- )
+  return await Note.findByIdAndUpdate(
+    id,
+    { $set: { title, content, important } },
+    { new: true } // devuelve la nota actualizada
+  )
 }
 
 // Eliminar
