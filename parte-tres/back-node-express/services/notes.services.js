@@ -4,7 +4,7 @@ import User from "../data/userModel.js";
 // Crear
 async function createNote( title, content, important, userid) {
   try {
-    const user = User.findById(userid);
+    const user = await User.findById(userid);
     const note = new Note({ title, content, important, date: new Date(), user: user._id });
     console.log(user.username)
     try {

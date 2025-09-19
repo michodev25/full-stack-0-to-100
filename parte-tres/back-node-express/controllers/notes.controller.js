@@ -24,20 +24,22 @@ export const getNoteById = async (req, res) => {
 // Crear una nueva nota
 export const createNote = async (req, res) => {
     const authorization = req.headers.authorization;
-    const {title, content, important, userid} = req.body
+    const {title, content, important} = req.body
     let token = null;
       if (authorization && authorization.toLowerCase().startsWith('bearer')) {
         token = authorization.substring(7)
       }
       let decodedToken = {};
        decodedToken = jwt.verify(token, process.env.JWT_SECRET)
-     
+      
       if (!token || !decodedToken.id) {
         console.log("❌ No tienes acceso:");
         res.status(401).json({error: "Token invalido o se ha perdido"})
       }
+      const {id:userid} = decodedToken;
+
     try {
-        const newNote = await notesService.createNote(title, content, important, userid);
+        const newNote = await notesService.createNote(title, content, important,userid);
         res.status(201).json({newNote});
     } catch (error) {
     
