@@ -1,5 +1,5 @@
 import notesService from '../services/notes.services.js'
-import jwt from 'jsonwebtoken';
+
 // Obtener todas las notas
 export const getAllNotes = async (req, res) => {
     try {
@@ -22,22 +22,10 @@ export const getNoteById = async (req, res) => {
 };
 
 // Crear una nueva nota
-export const createNote = async (req, res) => {
-    const authorization = req.headers.authorization;
-    const {title, content, important} = req.body
-    let token = null;
-      if (authorization && authorization.toLowerCase().startsWith('bearer')) {
-        token = authorization.substring(7)
-      }
-      let decodedToken = {};
-       decodedToken = jwt.verify(token, process.env.JWT_SECRET)
-      
-      if (!token || !decodedToken.id) {
-        console.log("❌ No tienes acceso:");
-        res.status(401).json({error: "Token invalido o se ha perdido"})
-      }
-      const {id:userid} = decodedToken;
-
+export const createNote = async (req, res, next) => {
+    const {userid} = req
+    console.log(userid)
+     const {title, content, important} = req.body
     try {
         const newNote = await notesService.createNote(title, content, important,userid);
         res.status(201).json({newNote});
@@ -48,7 +36,7 @@ export const createNote = async (req, res) => {
 };
 
 // Actualizar una nota
-export const updateNote = async (req, res) => {
+export const updateNote = async (req, res,next) => {
     try {
         const updatedNote = await notesService.updateNote(req.params.id, req.body);
         if (!updatedNote) return res.status(404).json({ error: 'Nota no encontrada' });
@@ -59,7 +47,7 @@ export const updateNote = async (req, res) => {
 };
 
 // Eliminar una nota
-export const deleteNote = async (req, res) => {
+export const deleteNote = async (req, res,next) => {
     try {
         const deleted = await notesService.deleteNote(req.params.id);
         if (!deleted) return res.status(404).json({ error: 'Nota no encontrada' });
