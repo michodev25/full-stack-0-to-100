@@ -1,11 +1,11 @@
 const getAllNotes = async () => {
-    return fetch('https://jsonplaceholder.typicode.com/posts').then((response) =>
+    return fetch('https://127.0.0.1/api/notes').then((response) =>
         response.json()
     );
 }
 
 const createNote = async (note) => {
-    return fetch('https://jsonplaceholder.typicode.com/posts', {
+    return fetch('https://127.0.0.1/api/notes', {
         method: 'POST',
         body: JSON.stringify(note),
         headers: {

@@ -1,15 +1,18 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react'
 import Note from './components/Note';
+//import { Login } from './components/Login.jsx';
 import Pagination from './components/Pagination';
 import './App.css'
-import { createNote, getAllNotes } from '../services/note/note';
+import { createNote, getAllNotes } from './services/note/note.js';
 
 function App() {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const notesPerPage = 10;
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     setTimeout(() => {
@@ -34,6 +37,11 @@ function App() {
     setNewNote("");
   };
 
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    console.log("THIS IS SUBMITTT")
+  }
+
   const handleChange = (e) => {
     setNewNote(e.target.value);
   };
@@ -46,6 +54,29 @@ function App() {
   return (
     <div>
       <h1>Notes</h1>
+       <div>
+            <form onSubmit={handleSubmitForm}>
+        <div>
+          <input type="text"
+            value={username}
+            name='Username'
+            placeholder='Username'
+            onChange={(target) => setUsername(target.value)}
+          />
+        </div>
+        <div className="div">
+          <input type="text"
+            value={password}
+            name='Password'
+            placeholder='Password'
+            onChange={(target) => setPassword(target.value)}
+          />
+        </div>
+        <button>
+          Login
+        </button>
+      </form>
+       </div>
       <ol>
         {currentNotes.map((note) => (
           <Note key={note.id} {...note} />
