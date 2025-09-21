@@ -1,11 +1,11 @@
 const getAllNotes = async () => {
-    return fetch('https://127.0.0.1/api/notes').then((response) =>
+    return fetch('http://localhost:3000/api/notes').then((response) =>
         response.json()
     );
 }
 
 const createNote = async (note) => {
-    return fetch('https://127.0.0.1/api/notes', {
+    return fetch('http://localhost:3000/api/notes', {
         method: 'POST',
         body: JSON.stringify(note),
         headers: {
@@ -14,4 +14,14 @@ const createNote = async (note) => {
     }).then((response) => response.json());
 }
 
-export { getAllNotes, createNote };
+const updateNote = async (id, note) => {    
+    return fetch(`http://localhost:3000/api/notes/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(note),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    }).then((response) => response.json());
+}   
+
+export { getAllNotes, createNote, updateNote};

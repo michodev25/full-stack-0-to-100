@@ -5,7 +5,7 @@ import Note from './components/Note';
 import Pagination from './components/Pagination';
 import './App.css'
 import { createNote, getAllNotes } from './services/note/note.js';
-
+import { login } from './services/auth.services.js';
 function App() {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
@@ -13,6 +13,7 @@ function App() {
   const notesPerPage = 10;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     setTimeout(() => {
@@ -37,8 +38,19 @@ function App() {
     setNewNote("");
   };
 
-  const handleSubmitForm = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+   try {
+     const user = await login(username, password)
+      .then((json) => {
+        setUser(json);
+        console.log(json);
+      });
+      setUsername('');
+      setPassword('');
+   } catch (error) {
+    console.log(error)
+   }
     console.log("THIS IS SUBMITTT")
   }
 
@@ -55,7 +67,7 @@ function App() {
     <div>
       <h1>Notes</h1>
        <div>
-            <form onSubmit={handleSubmitForm}>
+            <form onSubmit={handleLogin}>
         <div>
           <input type="text"
             value={username}

@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import 'dotenv/config';
 import notesRouter from './routes/notes.routes.js';
 import conectarDB from './services/database.js';
@@ -7,6 +8,7 @@ import authRouter from './routes/auth.routes.js';
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use('/api/', notesRouter);
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRouter);
@@ -23,7 +25,7 @@ app.all('/api/auth', (req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on https://localhost:${PORT}  🚀`);
+  console.log(`Server running on http://localhost:${PORT}  🚀`);
 });
 
 export default app;
