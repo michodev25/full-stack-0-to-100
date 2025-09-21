@@ -1,6 +1,6 @@
 const login =  async (username, password) => {
     
-    return fetch('http://localhost:3000/api/auth/login', {
+  return fetch('http://localhost:3000/api/auth/login', {
         method: 'POST',
         body: JSON.stringify({
             username: username,
@@ -9,8 +9,8 @@ const login =  async (username, password) => {
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
         },
-    }).then((response) => console.log(response) + response.json());
-    
+    }).then((response) => response.json());
+ 
 }
 const register = async (username, password) => {
     return fetch('http://localhost:3000/api/auth/register', {

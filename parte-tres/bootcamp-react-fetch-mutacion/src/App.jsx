@@ -40,12 +40,14 @@ function App() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+   
    try {
      const user = await login(username, password)
       .then((json) => {
         setUser(json);
         console.log(json);
       });
+       console.log(user)
       setUsername('');
       setPassword('');
    } catch (error) {
@@ -73,7 +75,7 @@ function App() {
             value={username}
             name='Username'
             placeholder='Username'
-            onChange={(target) => setUsername(target.value)}
+            onChange={({target}) => setUsername(target.value)}
           />
         </div>
         <div className="div">
@@ -81,7 +83,7 @@ function App() {
             value={password}
             name='Password'
             placeholder='Password'
-            onChange={(target) => setPassword(target.value)}
+            onChange={({target}) => setPassword(target.value)}
           />
         </div>
         <button>

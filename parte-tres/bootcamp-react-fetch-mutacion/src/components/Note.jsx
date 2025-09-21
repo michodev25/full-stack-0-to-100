@@ -2,11 +2,11 @@ import React from 'react'
 
 
 function Note(props) {
-    const { title, body } = props
+    const { title, content } = props
   return (
     <div>
         <h1>{title}</h1>
-        <p>{body}</p>
+        <p>{content}</p>
     </div>
   )
 }

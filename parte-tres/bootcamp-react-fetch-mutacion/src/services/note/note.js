@@ -4,11 +4,12 @@ const getAllNotes = async () => {
     );
 }
 
-const createNote = async (note) => {
+const createNote = async (note,{token}) => {
     return fetch('http://localhost:3000/api/notes', {
         method: 'POST',
         body: JSON.stringify(note),
         headers: {
+            "Authorization": `Bearer ${token}`,
             'Content-type': 'application/json; charset=UTF-8',
         },
     }).then((response) => response.json());
