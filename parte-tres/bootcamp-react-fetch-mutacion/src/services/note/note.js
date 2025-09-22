@@ -4,7 +4,12 @@ const getAllNotes = async () => {
     );
 }
 
-const createNote = async (note,{token}) => {
+let token = null;
+const setToken = (newToken) => {
+    token = newToken;
+}
+
+const createNote = async (note) => {
     return fetch('http://localhost:3000/api/notes', {
         method: 'POST',
         body: JSON.stringify(note),
@@ -25,4 +30,4 @@ const updateNote = async (id, note) => {
     }).then((response) => response.json());
 }   
 
-export { getAllNotes, createNote, updateNote};
+export { getAllNotes, createNote, updateNote,setToken};
