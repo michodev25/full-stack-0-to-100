@@ -103,12 +103,12 @@ return (
         <Note key={note._id} {...note} />
       ))}
     </ol>
-    <Pagination
+        <Pagination
       totalNotes={notes.length}
       notesPerPage={notesPerPage}
       currentPage={currentPage}
       setCurrentPage={setCurrentPage}
-    />
+        />
   </div>
 )
 }
