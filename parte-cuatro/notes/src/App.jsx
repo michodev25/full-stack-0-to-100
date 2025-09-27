@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route, Link } from "react-router";
 import Notes from './components/Notes'
 import Users from './components/Users'
 import './App.css'
@@ -24,14 +25,14 @@ function App() {
   }
 const inlineStyle = { padding: '10px' }
   return (
-    <div className="div">
+    <BrowserRouter>
       <header>
-       <a href="#" onClick={toPage('home')} style={inlineStyle}> Home</a>
-        <a href="#" onClick={toPage('notes')} style={inlineStyle}>Notes </a>
-        <a href="#" onClick={toPage('users')} style={inlineStyle}> Users</a>
+       <Link to="#" onClick={toPage('home')} style={inlineStyle}> Home</Link>
+        <Link to="#" onClick={toPage('notes')} style={inlineStyle}>Notes </Link>
+        <Link to="#" onClick={toPage('users')} style={inlineStyle}> Users</Link>
       </header>
       {getContent()}
-    </div>
+    </BrowserRouter>
   )
 }
 
