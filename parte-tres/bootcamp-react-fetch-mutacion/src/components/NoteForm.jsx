@@ -1,7 +1,10 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Note from './Note';
+import { Toggle } from './Toggle';
 export const NoteForm = (  {addNote, handleLogout }) => {
+
+    const refElement = useRef();
 
     const [newNote, setNewNote] = useState([]);
 
@@ -18,9 +21,12 @@ export const NoteForm = (  {addNote, handleLogout }) => {
         };
         addNote(noteToAdd);
         setNewNote('');
+        refElement.current.toggleVsibility();
     }
+    console.log(refElement)
     return (
         <div>
+            <Toggle buttonLabel="New Note" ref={refElement}>
             <h1>Create a new note</h1>
             <form onSubmit={createNoteForm}>
                 <input type="text" onChange={handleChange} value={newNote} />
@@ -28,6 +34,7 @@ export const NoteForm = (  {addNote, handleLogout }) => {
             </form>
 
             <button onClick={handleLogout}>Log Out</button>
+            </Toggle>
         </div>
     )
 }

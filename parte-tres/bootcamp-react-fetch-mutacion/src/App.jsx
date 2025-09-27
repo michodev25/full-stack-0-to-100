@@ -100,7 +100,7 @@ return (
     }
     <ol>
       {currentNotes.map((note) => (
-        <Note key={note._id} {...note} />
+        <Note key={note.id} {...note} />
       ))}
     </ol>
         <Pagination
