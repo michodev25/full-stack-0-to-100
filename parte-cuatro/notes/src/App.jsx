@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Routes, Route, Link } from "react-router";
-import Notes from './components/Notes'
+import Notes from './components/NoteForm'
 import Users from './components/Users'
 import './App.css'
 
