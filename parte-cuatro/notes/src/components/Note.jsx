@@ -1,12 +1,12 @@
 import React from 'react'
-
+import { Link } from 'react-router'
 
 function Note(props) {
     const { title, content, _id } = props
   return (
     <div>
         <h1>{title}</h1>
-        <p>{content}</p>
+        <Link to={`/notes/${_id}`}>{content}</Link>
         {console.log(_id)}
     </div>
   )

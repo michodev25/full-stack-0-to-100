@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useRef } from 'react';
 import Note from './Note';
-import { Toggle } from './Toggle';
+
 export const NoteForm = (  {addNote }) => {
 
     const refElement = useRef();
@@ -26,13 +26,13 @@ export const NoteForm = (  {addNote }) => {
     console.log(refElement)
     return (
         <div>
-            <Toggle buttonLabel="New Note" ref={refElement}>
+        
             <h1>Create a new note</h1>
             <form onSubmit={createNoteForm}>
                 <input type="text" onChange={handleChange} value={newNote} />
                 <button type="submit">Add Note</button>
             </form>
-            </Toggle>
+   
         </div>
     )
 }
