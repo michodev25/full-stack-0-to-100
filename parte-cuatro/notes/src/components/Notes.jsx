@@ -1,12 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react'
-import Note from './components/Note';
+import Note from './components/Note.jsx';
 //import { Login } from './components/Login.jsx';
-import Pagination from './components/Pagination';
+import Pagination from './components/Pagination.jsx';
 import './App.css'
-import { createNote, getAllNotes, setToken } from './services/note/note.js';
-
-
+import { createNote, getAllNotes, setToken } from '../services/note.js';
 import { NoteForm } from './components/NoteForm.jsx';
 function Notes() {
   const [notes, setNotes] = useState([]);
@@ -17,6 +15,7 @@ function Notes() {
         .then((json) => {
           setNotes(json);
         });
+        console.log(notes)
     }, 2000)
   }, []);
 

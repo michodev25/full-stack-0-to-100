@@ -1,8 +1,8 @@
-import React from 'react'
-import { useState, useRef } from 'react';
-import Note from './Note';
 
-export const NoteForm = (  {addNote }) => {
+import { useState, useRef } from 'react';
+
+
+const NoteForm = (  {addNote }) => {
 
     const refElement = useRef();
 
@@ -23,7 +23,7 @@ export const NoteForm = (  {addNote }) => {
         setNewNote('');
         refElement.current.toggleVsibility();
     }
-    console.log(refElement)
+
     return (
         <div>
         
@@ -36,3 +36,5 @@ export const NoteForm = (  {addNote }) => {
         </div>
     )
 }
+
+export default NoteForm;
