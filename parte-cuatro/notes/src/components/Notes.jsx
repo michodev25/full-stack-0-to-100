@@ -2,18 +2,8 @@
 import { useEffect, useState } from 'react'
 import Note from './Note.jsx';
 import { createNote, getAllNotes, setToken } from '../services/note.js';
-function Notes() {
-  const [notes, setNotes] = useState([]);
+function Notes({notes, setNotes}) {
 
-  useEffect(() => {
-    setTimeout(() => {
-      getAllNotes()
-        .then((json) => {
-          setNotes(json);
-        });
-      console.log(notes)
-    }, 2000)
-  },[]);
 
   const createNoteForm = (e) => {
     e.preventDefault();
