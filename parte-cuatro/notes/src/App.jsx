@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Routes, Route, Link } from "react-router";
-import Notes from './components/NoteForm'
-import Users from './components/Users'
+import Notes from './components/Notes.jsx'
+import Users from './components/Users.jsx'
 import './App.css'
 
 function App() {
