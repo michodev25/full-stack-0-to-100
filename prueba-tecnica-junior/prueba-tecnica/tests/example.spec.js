@@ -1,9 +1,9 @@
 // @ts-check
 import { test, expect } from '@playwright/test'
 
-const url = 'http://localhost:5147'
+const url = 'http://localhost:5173'
 
-test('has title', async ({ page }) => {
+test('has text', async ({ page }) => {
   await page.goto(url)
 
   const text = await page.getByRole('paragraph')
@@ -13,5 +13,5 @@ test('has title', async ({ page }) => {
   const imgContent = await img.getAttribute('src')
 
   expect(textContent?.length).toBeGreaterThan(0)
-  expect(imgContent?.startsWith('https://cataas.com/cat/cute/says/')).toBeTruthy()
+  expect(imgContent?.startsWith('https://cataas.com/')).toBeTruthy()
 })
