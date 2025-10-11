@@ -1,35 +1,21 @@
-import { useEffect, useState } from 'react'
+import useFact from './hooks/useFact'
+import useCatImage from './hooks/useCatImage'
 import './style.css'
 
-const CAT_ENDPOINT_RANDOM_FACT = 'https://catfact.ninja/fact'
-// const CAT_ENDPOINT_RANDOM_IMAGE = `https://cataas.com/cat/cute/says/${firstThreeWords}?json=true`
 function App () {
-  const [fact, setFact] = useState()
-  const [catImg, setCatImg] = useState()
+  const { fact, refreshFact } = useFact()
+  const { imgUrl } = useCatImage({ fact })
 
-  useEffect(() => {
-    fetch(CAT_ENDPOINT_RANDOM_FACT)
-      .then(res => res.json())
-      .then(data => {
-        const { fact } = data
-        setFact(fact)
-
-        const firstThreeWords = fact.split(' ', 3).join(' ')
-        console.log(firstThreeWords)
-        fetch(`https://cataas.com/cat/cute/says/${firstThreeWords}?json=true`)
-          .then(res => res.json())
-          .then(data => {
-            const { url } = data
-            setCatImg(url)
-          })
-      })
-  }, [])
+  const handleClick = () => {
+    refreshFact()
+  }
 
   return (
     <main>
       <h1>App de gatitos</h1>
+      <button onClick={handleClick}>Get a new fact</button>
       {fact && <p>{fact}</p>}
-      {catImg && <img src={catImg} alt={`esta es una imagen de un gato con las palabras ${fact}`} />}
+      {imgUrl && <img src={imgUrl} alt={`esta es una imagen de un gato con las palabras ${fact}`} />}
     </main>
 
   )
