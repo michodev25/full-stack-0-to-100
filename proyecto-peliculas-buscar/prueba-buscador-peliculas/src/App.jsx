@@ -1,7 +1,9 @@
-import React from 'react'
 import './App.css'
+import withResult from './data/movies-with-result.json'
+import noResult from './data/movies-no-result.json'
 
 function App() {
+  const 
 
   return (
     <div className='page'>

@@ -1,0 +1,76 @@
+{
+    "Search": [
+        {
+            "Title": "Underworld",
+            "Year": "2003",
+            "imdbID": "tt0320691",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BOWIwZjFkYjktZTI3My00YzhkLWI5NmUtZDYyMTg5ZWVmODZkXkEyXkFqcGc@._V1_SX300.jpg"
+        },
+        {
+            "Title": "Underworld: Evolution",
+            "Year": "2006",
+            "imdbID": "tt0401855",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BMjEzNDY1OTQwOV5BMl5BanBnXkFtZTcwNjcxMTIzMw@@._V1_SX300.jpg"
+        },
+        {
+            "Title": "Underworld: Rise of the Lycans",
+            "Year": "2009",
+            "imdbID": "tt0834001",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BMTAwNzYzMDQyMzReQTJeQWpwZ15BbWU3MDMyNDA0MjI@._V1_SX300.jpg"
+        },
+        {
+            "Title": "Underworld: Awakening",
+            "Year": "2012",
+            "imdbID": "tt1496025",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BMjAxMjc0ODk0OF5BMl5BanBnXkFtZTcwMTc5NDQwNw@@._V1_SX300.jpg"
+        },
+        {
+            "Title": "Underworld: Blood Wars",
+            "Year": "2016",
+            "imdbID": "tt3717252",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BMjI5Njk0NTIyNV5BMl5BanBnXkFtZTgwNjU4MjY5MDI@._V1_SX300.jpg"
+        },
+        {
+            "Title": "Underworld U.S.A.",
+            "Year": "1961",
+            "imdbID": "tt0055571",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BNzVmMjdkMDgtMTU0ZC00NzcwLWI4ZDAtNjk2ZTExYTEwYTdkXkEyXkFqcGc@._V1_SX300.jpg"
+        },
+        {
+            "Title": "Underworld",
+            "Year": "1927",
+            "imdbID": "tt0018526",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BYjU2MTcwMTMtYzE3Yy00YzcxLTg5MjctZjI3OWFmYjA4MTA3XkEyXkFqcGc@._V1_SX300.jpg"
+        },
+        {
+            "Title": "Hercules in the Underworld",
+            "Year": "1994",
+            "imdbID": "tt0110019",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BMDg2ZGY0M2UtYzNlMy00NmZmLWJjMWEtNzQ4MjcwNDQ2ZWFiXkEyXkFqcGc@._V1_SX300.jpg"
+        },
+        {
+            "Title": "Underworld: Endless War",
+            "Year": "2011",
+            "imdbID": "tt2381375",
+            "Type": "series",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BMjhmOGRkYTUtNjNlOS00ZDMwLTk0ZDAtN2Q5MDVlOWViOWVmXkEyXkFqcGc@._V1_SX300.jpg"
+        },
+        {
+            "Title": "Cyberbunker: The Criminal Underworld",
+            "Year": "2023",
+            "imdbID": "tt29472617",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BZGE0MDRmNGQtZDNhNy00ZDA1LTlmMjQtODA2ZTJjMjE0MmZhXkEyXkFqcGc@._V1_SX300.jpg"
+        }
+    ],
+    "totalResults": "193",
+    "Response": "True"
+}
