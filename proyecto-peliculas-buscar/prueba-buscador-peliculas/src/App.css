@@ -1,0 +1,28 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: #061d24;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.10rem;
+  margin-bottom: 0.5rem;
+  width: 5rem;
+}
