@@ -1,22 +1,22 @@
 import './App.css'
-import withResult from './data/movies-with-result.json'
-import noResult from './data/movies-no-result.json'
+import { Movies } from './components/Movies'
+import { useMovies } from './hooks/useMovies'
+
 
 function App() {
-  const 
-
+  const { movies: mappedMovies } = useMovies()
   return (
     <div className='page'>
       <header>
         <h1>Buscador de Peliculas</h1>
         <form className='form'>
           <input placeholder='Avengers, Star Wars, The Matrix' />
-           <button type='submit'>Buscar</button>
+          <button type='submit'>Buscar</button>
         </form>
       </header>
 
       <main>
-        Aqui iran los resultados de la busqueda.
+       <Movies movies={mappedMovies}/>
       </main>
     </div>
   )
