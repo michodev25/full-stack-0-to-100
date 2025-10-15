@@ -1,16 +1,14 @@
-//import { useState, useEffect } from "react"
-import withResult from '../data/movies-with-results.json'
-//import noResult from '../data/movies-no-result.json'
+import { useState } from 'react'
+import { searchMovies } from '../services/movies'
 
-export function useMovies() {
-    const movies =  withResult.Search
+export function useMovies({ search }) {
+    const [movies, setMovies] = useState([])
 
-    const mappedMovies = movies?.map(movie => ({
-            id: movie.imdbID,
-            title: movie.Title,
-            year: movie.Year,
-            poster: movie.Poster
-        }
-    ))
-    return { movies: mappedMovies }
+    const getMovies = () => {
+        const newMovies = searchMovies({ search })
+        setMovies(newMovies)
+    }
+
+
+    return { movies, getMovies }
 }
