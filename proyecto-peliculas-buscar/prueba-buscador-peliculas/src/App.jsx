@@ -1,26 +1,35 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import './App.css'
 import { Movies } from './components/Movies'
 import { useMovies } from './hooks/useMovies'
 import { useSearch } from './hooks/useSearch'
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import Switch from '@mui/material/Switch';
+import debounce from 'just-debounce-it'
 
 function App() {
-  const [sort,setSort] = useState(false)
+  const [sort, setSort] = useState(false)
   const { search, updateSearch, error } = useSearch()
   const { movies, getMovies, loading } = useMovies({ search, sort })
 
+  const debouncedGetMovies = useCallback(
+    debounce(search => {
+      console.log('search', search)
+      getMovies({ search })
+    }, 300)
+    , [getMovies]
+  )
+
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    getMovies({ search})
+    getMovies({ search })
     // Lógica para manejar la búsqueda
   }
   const handleChange = (event) => {
     const newSearch = event.target.value
     updateSearch(newSearch)
-    getMovies({ search: newSearch })
+   debouncedGetMovies(newSearch)
   }
 
   const handleSort = (event) => {
@@ -39,9 +48,12 @@ function App() {
             }}
             onChange={handleChange} value={search}
             placeholder='Avengers, Star Wars, The Matrix' />
+          <input type='checkbox' onChange={handleSort} checked={sort} />
           <button type='submit'>Buscar</button>
         </form>
-       <Switch onChange={handleSort}/>
+
+
+
         {error ? <p style={{ color: "red" }}>{error}</p> : null}
       </header>
 
